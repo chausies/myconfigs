@@ -16,8 +16,8 @@ alias "cfe"="coffee -c"
 alias "filesize"="ncdu"
 # Shortcut for python doctest running
 alias "pytest"="python3 -m doctest"
-# Run pip with sudo for default python version
-alias "pip_install"="sudo -H python3 -m pip install -U --upgrade"
+# Run pip for default python version (no longer use sudo for some reason)
+alias "pip_install"="python3 -m pip install -U --upgrade"
 # Change volume to past 100%. E.g. CV 200%
 alias "change-vol"="pactl set-sink-volume 1"
 
@@ -71,6 +71,9 @@ export DISPLAY=$(ip route list default | awk '{print $3}'):0
 
 # For VcXsrv (helps with matplotlib I think? @.@)
 export LIBGL_ALWAYS_INDIRECT=1
+
+# Makes matplotlib work I think??? @.@
+export DISPLAY=localhost:0
 
 # Ctrl+R does reverse search. This makes Ctrl+S forward search
 stty -ixon

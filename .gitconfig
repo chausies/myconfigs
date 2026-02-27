@@ -1,12 +1,10 @@
 [user]
 	email = chausies7@gmail.com
 	name = chausies
-[credential]
-	helper = cache
 [color]
 	ui = true
 [alias]
-	st = status
+	st = status -uno
 	b = branch
 	co = checkout
   cm = commit -m
