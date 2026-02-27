@@ -78,5 +78,9 @@ export DISPLAY=localhost:0
 # Ctrl+R does reverse search. This makes Ctrl+S forward search
 stty -ixon
 
+# Activate default uv virtual environment
+source /home/chausies/.wsl_default_env/bin/activate
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Make vim default editor
 export EDITOR=vim

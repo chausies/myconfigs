@@ -23,7 +23,7 @@ sudo apt -y install 7zip ncdu tmate cmake curl wget git build-essential pkg-conf
 
 # Node, Go, and C# (Kept for YouCompleteMe/LSP servers)
 # Note: mono-complete is massive. If you don't write C#, you can remove it.
-sudo apt -y install mono-complete golang-go nodejs npm
+sudo apt -y install mono-complete golang-go nodejs openjdk-17-jdk openjdk-17-jre npm
 
 # Python system dependencies (for matplotlib GUI/rendering)
 sudo apt -y install python3-dev python3-tk python3-gi-cairo python3-venv
@@ -42,9 +42,6 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 UV_VENV_DIR="$HOME/.wsl_default_env"
 if [ ! -d "$UV_VENV_DIR" ]; then
     uv venv "$UV_VENV_DIR"
-    # Append activation to bashrc so it acts like a global environment
-    echo -e "\n# Activate default uv virtual environment" >> ~/.bashrc
-    echo "source $UV_VENV_DIR/bin/activate" >> ~/.bashrc
 fi
 
 # Install Python Libraries into the default venv
@@ -142,10 +139,14 @@ fi
 
 
 echo "========================================="
-echo " Installing LaTeX"
+echo " Installing LaTeX (Tectonic)"
 echo "========================================="
-# Install Tectonic (modern, lightweight LaTeX engine that auto-downloads packages)
-sudo apt -y install tectonic
+# Ubuntu 24.04 does not have Tectonic in the default apt repos.
+# We will download the official pre-compiled binary instead.
+mkdir -p ~/.local/bin
+cd ~/temp
+curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+mv tectonic ~/.local/bin/
 
 # Fallback traditional LaTeX (Warning: texlive-full is massive, ~6-7 GB). 
 # Uncomment the line below if Tectonic doesn't support a specific legacy package you need:
@@ -156,9 +157,22 @@ echo "========================================="
 echo " Fetching & Running Custom Configs"
 echo "========================================="
 cd ~
-# git clone https://github.com/chausies/myconfigs.git
-if [ -f ~/myconfigs/RUN_THIS.sh ]; then
-    sh ~/myconfigs/RUN_THIS.sh
+ln -s ~/myconfigs/.mybashrc ~/
+ln -s ~/myconfigs/.inputrc ~/
+ln -s ~/myconfigs/.pythonrc ~/
+ln -s ~/myconfigs/.gitconfig ~/
+
+# Get .bashrc to source .mybashrc if it isn't already
+if grep -Fxq "source ~/.mybashrc" ~/.bashrc
+then
+echo ".bashrc already sourcing .mybashrc"
+else
+cat <<EOT >> ~/.bashrc
+
+# Run all the custom configs in .mybashrc
+source ~/.mybashrc
+
+EOT
 fi
 
 cd ~
