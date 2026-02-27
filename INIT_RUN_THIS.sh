@@ -177,7 +177,7 @@ fi
 
 cd ~
 if [ ! -d "~/.vim" ]; then
-    git clone https://github.com/chausies/.vim.git ~/.vim
+    git clone git@github.com:chausies/.vim.git ~/.vim
 fi
 if [ -f ~/.vim/RUN_THIS.sh ]; then
     sh ~/.vim/RUN_THIS.sh
