@@ -77,3 +77,6 @@ export DISPLAY=localhost:0
 
 # Ctrl+R does reverse search. This makes Ctrl+S forward search
 stty -ixon
+
+# Make vim default editor
+export EDITOR=vim
