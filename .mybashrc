@@ -80,7 +80,10 @@ stty -ixon
 
 # Activate default uv virtual environment
 source /home/chausies/.wsl_default_env/bin/activate
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# export VIRTUAL_ENV_DISABLE_PROMPT=1 # to get rid of extra prompt
 
 # Make vim default editor
 export EDITOR=vim
+
+# To make python interpreter support vi mode
+export PYTHON_BASIC_REPL=1

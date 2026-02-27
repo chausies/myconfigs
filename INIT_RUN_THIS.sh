@@ -38,7 +38,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # Ubuntu 24.04 blocks global python installs. We will create a primary virtualenv
-# for your general workflow and auto-activate it in ~/.bashrc
+# for your general workflow and auto-activate it in .mybashrc
 UV_VENV_DIR="$HOME/.wsl_default_env"
 if [ ! -d "$UV_VENV_DIR" ]; then
     uv venv "$UV_VENV_DIR"
