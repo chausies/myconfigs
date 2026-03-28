@@ -87,3 +87,7 @@ export EDITOR=vim
 
 # To make python interpreter support vi mode
 export PYTHON_BASIC_REPL=1
+
+# So kanji displays better in terminal
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"

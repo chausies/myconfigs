@@ -183,6 +183,10 @@ if [ -f ~/.vim/RUN_THIS.sh ]; then
     sh ~/.vim/RUN_THIS.sh
 fi
 
+# For better JP kanji support
+sudo locale-gen en_US.UTF-8
+sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
 echo "========================================="
 echo " DONE! Please restart your terminal."
 echo "========================================="
